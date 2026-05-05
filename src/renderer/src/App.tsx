@@ -5,6 +5,7 @@ import { History } from './components/History'
 import { Branches } from './components/Branches'
 import { SettingsModal } from './components/SettingsModal'
 import { CloneModal } from './components/CloneModal'
+import { RemotesModal } from './components/RemotesModal'
 
 export function App(): React.ReactElement {
   const repos = useApp((s) => s.repos)
@@ -25,6 +26,7 @@ export function App(): React.ReactElement {
 
   const [showSettings, setShowSettings] = useState(false)
   const [showClone, setShowClone] = useState(false)
+  const [showRemotes, setShowRemotes] = useState(false)
 
   useEffect(() => {
     void refreshRepos()
@@ -104,6 +106,7 @@ export function App(): React.ReactElement {
                 <span className="muted">↑{current.ahead} ↓{current.behind}</span>
               )}
               <span className="spacer" style={{ flex: 1 }} />
+              <button onClick={() => setShowRemotes(true)} disabled={busy}>Remotes</button>
               <button onClick={doFetch} disabled={busy}>Fetch</button>
               <button onClick={doPull} disabled={busy || !current}>Pull</button>
               <button onClick={doPush} disabled={busy || !current}>Push</button>
@@ -132,6 +135,7 @@ export function App(): React.ReactElement {
 
       {showSettings && <SettingsModal onClose={() => setShowSettings(false)} />}
       {showClone && <CloneModal onClose={() => setShowClone(false)} />}
+      {showRemotes && selected && <RemotesModal onClose={() => setShowRemotes(false)} />}
       {toast && (
         <div
           style={{

@@ -86,6 +86,13 @@ export function registerIpc(): void {
     setPendingHost(hostFromRepo(repo))
     return svc.push(repo, remote, branch)
   })
+  ipcMain.handle('git:remotes', (_e, repo: string) => svc.listRemotes(repo))
+  ipcMain.handle('git:addRemote', (_e, repo: string, name: string, url: string) =>
+    svc.addRemote(repo, name, url)
+  )
+  ipcMain.handle('git:removeRemote', (_e, repo: string, name: string) =>
+    svc.removeRemote(repo, name)
+  )
   ipcMain.handle('git:clone', (_e, url: string, dest: string) => {
     try {
       const u = new URL(url)

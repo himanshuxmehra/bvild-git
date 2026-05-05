@@ -41,7 +41,13 @@ const api = {
     push: (repo: string, remote?: string, branch?: string): Promise<GitResult> =>
       ipcRenderer.invoke('git:push', repo, remote, branch),
     clone: (url: string, dest: string): Promise<GitResult> =>
-      ipcRenderer.invoke('git:clone', url, dest)
+      ipcRenderer.invoke('git:clone', url, dest),
+    remotes: (repo: string): Promise<{ name: string; url: string }[]> =>
+      ipcRenderer.invoke('git:remotes', repo),
+    addRemote: (repo: string, name: string, url: string): Promise<GitResult> =>
+      ipcRenderer.invoke('git:addRemote', repo, name, url),
+    removeRemote: (repo: string, name: string): Promise<GitResult> =>
+      ipcRenderer.invoke('git:removeRemote', repo, name)
   },
   ssh: {
     hasKey: (): Promise<boolean> => ipcRenderer.invoke('ssh:hasKey'),

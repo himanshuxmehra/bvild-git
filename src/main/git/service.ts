@@ -54,6 +54,24 @@ export async function init(dir: string): Promise<GitResult> {
   return git(['init'], dir)
 }
 
+export async function listRemotes(repo: string): Promise<{ name: string; url: string }[]> {
+  const out = await gitOrThrow(['remote', '-v'], repo)
+  const seen = new Map<string, string>()
+  for (const line of out.split('\n')) {
+    const m = line.match(/^(\S+)\s+(\S+)\s+\(fetch\)/)
+    if (m) seen.set(m[1], m[2])
+  }
+  return Array.from(seen, ([name, url]) => ({ name, url }))
+}
+
+export async function addRemote(repo: string, name: string, url: string): Promise<GitResult> {
+  return git(['remote', 'add', name, url], repo)
+}
+
+export async function removeRemote(repo: string, name: string): Promise<GitResult> {
+  return git(['remote', 'remove', name], repo)
+}
+
 export async function fetch(repo: string, remote = 'origin'): Promise<GitResult> {
   return git(['fetch', '--prune', remote], repo)
 }
