@@ -81,7 +81,7 @@ export async function pull(repo: string): Promise<GitResult> {
 }
 
 export async function push(repo: string, remote = 'origin', branch?: string): Promise<GitResult> {
-  const args = ['push', remote]
+  const args = ['push', '-u', remote]
   if (branch) args.push(branch)
   return git(args, repo)
 }
