@@ -1,0 +1,58 @@
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  color: #ddd;
+  background: #1e1f22;
+}
+button {
+  background: #2d2f34; color: #ddd; border: 1px solid #3a3d42;
+  padding: 4px 10px; border-radius: 4px; cursor: pointer;
+}
+button:hover { background: #3a3d42; }
+button:disabled { opacity: 0.5; cursor: default; }
+input, textarea, select {
+  background: #2d2f34; color: #ddd; border: 1px solid #3a3d42;
+  padding: 4px 6px; border-radius: 4px; font: inherit;
+}
+.app { display: flex; height: 100%; }
+.sidebar { width: 240px; border-right: 1px solid #2d2f34; display: flex; flex-direction: column; }
+.sidebar h2 { font-size: 12px; text-transform: uppercase; color: #888; margin: 12px; }
+.sidebar .repo {
+  padding: 6px 12px; cursor: pointer; border-bottom: 1px solid #2a2c30;
+}
+.sidebar .repo.active { background: #2d4f7c; }
+.sidebar .repo:hover { background: #2d2f34; }
+.sidebar .actions { padding: 12px; border-top: 1px solid #2d2f34; display: flex; gap: 6px; flex-wrap: wrap; }
+.main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.tabs { display: flex; border-bottom: 1px solid #2d2f34; }
+.tabs button { border: none; background: none; padding: 10px 18px; color: #aaa; }
+.tabs button.active { color: #fff; border-bottom: 2px solid #4a90e2; }
+.body { flex: 1; display: flex; min-height: 0; }
+.changes { width: 320px; border-right: 1px solid #2d2f34; display: flex; flex-direction: column; }
+.changes .file { padding: 4px 10px; cursor: pointer; display: flex; gap: 8px; align-items: center; }
+.changes .file:hover { background: #2a2c30; }
+.changes .file.selected { background: #2d4f7c; }
+.changes .commit-box { padding: 10px; border-top: 1px solid #2d2f34; display: flex; flex-direction: column; gap: 6px; }
+.changes .commit-box textarea { resize: none; height: 60px; }
+.diff { flex: 1; overflow: auto; padding: 10px; font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 12px; white-space: pre; }
+.diff .add { color: #6a9955; }
+.diff .del { color: #d97a7a; }
+.diff .hunk { color: #4a90e2; }
+.toolbar { padding: 8px 12px; border-bottom: 1px solid #2d2f34; display: flex; gap: 8px; align-items: center; }
+.toolbar .branch { font-weight: 600; }
+.toolbar .spacer { flex: 1; }
+.history { flex: 1; overflow: auto; }
+.history .commit { padding: 8px 12px; border-bottom: 1px solid #2a2c30; cursor: pointer; }
+.history .commit:hover { background: #2a2c30; }
+.history .commit.selected { background: #2d4f7c; }
+.history .commit .sha { color: #888; font-family: monospace; font-size: 11px; }
+.modal-back { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; }
+.modal { background: #2a2c30; padding: 24px; border-radius: 8px; min-width: 420px; max-width: 600px; }
+.modal h3 { margin-top: 0; }
+.row { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
+.row label { width: 90px; }
+.row input { flex: 1; }
+.muted { color: #888; }
+.code { font-family: monospace; background: #1a1b1e; padding: 2px 6px; border-radius: 3px; }
