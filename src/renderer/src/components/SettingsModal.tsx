@@ -6,6 +6,7 @@ export function SettingsModal({ onClose }: { onClose: () => void }): React.React
   const [pubKey, setPubKey] = useState<string | null>(null)
   const [ghCode, setGhCode] = useState<{ user_code: string; verification_uri: string } | null>(null)
   const [ghStatus, setGhStatus] = useState('')
+  const [ghUser, setGhUser] = useState<string | null>(null)
 
   useEffect(() => {
     void (async () => {
@@ -13,6 +14,8 @@ export function SettingsModal({ onClose }: { onClose: () => void }): React.React
       setName(id.name)
       setEmail(id.email)
       setPubKey(await window.api.ssh.publicKey())
+      const cred = await window.api.creds.findByHost('github.com')
+      if (cred) setGhUser(cred.username)
     })()
   }, [])
 
@@ -33,10 +36,18 @@ export function SettingsModal({ onClose }: { onClose: () => void }): React.React
     try {
       const r = await window.api.oauth.githubComplete(dc)
       setGhStatus(`Signed in as ${r.login}`)
+      setGhUser(r.login)
       setGhCode(null)
     } catch (e) {
       setGhStatus(`Failed: ${(e as Error).message}`)
     }
+  }
+
+  async function signOutGitHub(): Promise<void> {
+    if (!ghUser) return
+    await window.api.creds.delete('github.com', ghUser)
+    setGhUser(null)
+    setGhStatus('')
   }
 
   return (
@@ -69,7 +80,14 @@ export function SettingsModal({ onClose }: { onClose: () => void }): React.React
         )}
 
         <h4>GitHub sign-in</h4>
-        {ghCode ? (
+        {ghUser ? (
+          <div className="row">
+            <div style={{ flex: 1 }}>
+              Signed in as <span className="code">{ghUser}</span>
+            </div>
+            <button onClick={signOutGitHub}>Sign out</button>
+          </div>
+        ) : ghCode ? (
           <div>
             <div>Open <span className="code">{ghCode.verification_uri}</span> and enter code:</div>
             <div className="code" style={{ fontSize: 18, marginTop: 6 }}>{ghCode.user_code}</div>
@@ -77,7 +95,7 @@ export function SettingsModal({ onClose }: { onClose: () => void }): React.React
         ) : (
           <button onClick={signInGitHub}>Sign in with GitHub</button>
         )}
-        {ghStatus && <div className="muted" style={{ marginTop: 6 }}>{ghStatus}</div>}
+        {ghStatus && !ghUser && <div className="muted" style={{ marginTop: 6 }}>{ghStatus}</div>}
 
         <div className="row" style={{ marginTop: 16 }}>
           <span style={{ flex: 1 }} />
