@@ -29,6 +29,9 @@ input, textarea, select {
 .tabs { display: flex; border-bottom: 1px solid #2d2f34; }
 .tabs button { border: none; background: none; padding: 10px 18px; color: #aaa; }
 .tabs button.active { color: #fff; border-bottom: 2px solid #4a90e2; }
+.tabs .refresh-btn { font-size: 16px; padding: 6px 12px; margin-right: 8px; align-self: center; cursor: pointer; border-radius: 4px; }
+.tabs .refresh-btn:hover:not(:disabled) { background: #2d2f34; color: #fff; }
+.tabs .refresh-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 .body { flex: 1; display: flex; min-height: 0; }
 .changes { width: 320px; border-right: 1px solid #2d2f34; display: flex; flex-direction: column; }
 .changes .file { padding: 4px 10px; cursor: pointer; display: flex; gap: 8px; align-items: center; }

@@ -112,6 +112,17 @@ export function App(): React.ReactElement {
               <button onClick={doPush} disabled={busy || !current}>Push</button>
             </div>
             <div className="tabs">
+              <button
+                className="refresh-btn"
+                onClick={() =>
+                  Promise.all([refreshStatus(), refreshLog(), refreshBranches()])
+                }
+                disabled={busy}
+                title="Refresh"
+                aria-label="Refresh"
+              >
+                ↻
+              </button>
               <button className={tab === 'changes' ? 'active' : ''} onClick={() => setTab('changes')}>
                 Changes
               </button>
