@@ -95,7 +95,13 @@ export const useApp = create<AppState>((set, get) => ({
   async refreshStatus() {
     const r = get().selectedRepo
     if (!r) return
-    set({ status: await window.api.git.status(r.path) })
+    const newStatus = await window.api.git.status(r.path)
+    const { selectedFile } = get()
+    const stillPresent = selectedFile && newStatus.some((f) => f.path === selectedFile)
+    set({
+      status: newStatus,
+      ...(stillPresent ? {} : { selectedFile: null, diff: '' })
+    })
   },
   async refreshLog() {
     const r = get().selectedRepo
