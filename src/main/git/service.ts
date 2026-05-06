@@ -133,3 +133,36 @@ export async function deleteBranch(repo: string, name: string): Promise<GitResul
 export async function merge(repo: string, branch: string): Promise<GitResult> {
   return git(['merge', '--no-edit', branch], repo)
 }
+
+export async function listTags(repo: string): Promise<string[]> {
+  const out = await gitOrThrow(['tag', '--sort=-creatordate'], repo)
+  return out
+    .split('\n')
+    .map((s) => s.trim())
+    .filter(Boolean)
+}
+
+export async function createTag(
+  repo: string,
+  name: string,
+  message?: string,
+  ref?: string
+): Promise<GitResult> {
+  const args = ['tag']
+  if (message && message.trim()) args.push('-a', name, '-m', message)
+  else args.push(name)
+  if (ref && ref.trim()) args.push(ref)
+  return git(args, repo)
+}
+
+export async function deleteTag(repo: string, name: string): Promise<GitResult> {
+  return git(['tag', '-d', name], repo)
+}
+
+export async function pushTag(
+  repo: string,
+  name: string,
+  remote = 'origin'
+): Promise<GitResult> {
+  return git(['push', remote, 'refs/tags/' + name], repo)
+}

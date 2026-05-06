@@ -47,7 +47,18 @@ const api = {
     addRemote: (repo: string, name: string, url: string): Promise<GitResult> =>
       ipcRenderer.invoke('git:addRemote', repo, name, url),
     removeRemote: (repo: string, name: string): Promise<GitResult> =>
-      ipcRenderer.invoke('git:removeRemote', repo, name)
+      ipcRenderer.invoke('git:removeRemote', repo, name),
+    tags: (repo: string): Promise<string[]> => ipcRenderer.invoke('git:tags', repo),
+    createTag: (
+      repo: string,
+      name: string,
+      message?: string,
+      ref?: string
+    ): Promise<GitResult> => ipcRenderer.invoke('git:createTag', repo, name, message, ref),
+    deleteTag: (repo: string, name: string): Promise<GitResult> =>
+      ipcRenderer.invoke('git:deleteTag', repo, name),
+    pushTag: (repo: string, name: string, remote?: string): Promise<GitResult> =>
+      ipcRenderer.invoke('git:pushTag', repo, name, remote)
   },
   ssh: {
     hasKey: (): Promise<boolean> => ipcRenderer.invoke('ssh:hasKey'),

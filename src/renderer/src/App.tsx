@@ -6,6 +6,7 @@ import { Branches } from './components/Branches'
 import { SettingsModal } from './components/SettingsModal'
 import { CloneModal } from './components/CloneModal'
 import { RemotesModal } from './components/RemotesModal'
+import { TagsModal } from './components/TagsModal'
 
 export function App(): React.ReactElement {
   const repos = useApp((s) => s.repos)
@@ -27,6 +28,7 @@ export function App(): React.ReactElement {
   const [showSettings, setShowSettings] = useState(false)
   const [showClone, setShowClone] = useState(false)
   const [showRemotes, setShowRemotes] = useState(false)
+  const [showTags, setShowTags] = useState(false)
 
   useEffect(() => {
     void refreshRepos()
@@ -110,6 +112,7 @@ export function App(): React.ReactElement {
               <button onClick={doFetch} disabled={busy}>Fetch</button>
               <button onClick={doPull} disabled={busy || !current}>Pull</button>
               <button onClick={doPush} disabled={busy || !current}>Push</button>
+              <button onClick={() => setShowTags(true)} disabled={busy}>Tag</button>
             </div>
             <div className="tabs">
               <button
@@ -147,6 +150,7 @@ export function App(): React.ReactElement {
       {showSettings && <SettingsModal onClose={() => setShowSettings(false)} />}
       {showClone && <CloneModal onClose={() => setShowClone(false)} />}
       {showRemotes && selected && <RemotesModal onClose={() => setShowRemotes(false)} />}
+      {showTags && selected && <TagsModal onClose={() => setShowTags(false)} />}
       {toast && (
         <div
           style={{

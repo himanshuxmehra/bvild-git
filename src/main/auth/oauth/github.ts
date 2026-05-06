@@ -4,7 +4,7 @@ import { setCredential } from '../keystore'
 // can be configured via env. Default is the GitHub CLI client id which
 // supports device flow; users can replace with their own.
 const CLIENT_ID = process.env.BVILD_GITHUB_CLIENT_ID ?? '178c6fc778ccc68e1d6a'
-const SCOPE = 'repo,read:user,user:email'
+const SCOPE = 'repo,workflow,read:user,user:email'
 
 export interface DeviceCode {
   device_code: string

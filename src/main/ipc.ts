@@ -86,6 +86,17 @@ export function registerIpc(): void {
     setPendingHost(hostFromRepo(repo))
     return svc.push(repo, remote, branch)
   })
+  ipcMain.handle('git:tags', (_e, repo: string) => svc.listTags(repo))
+  ipcMain.handle(
+    'git:createTag',
+    (_e, repo: string, name: string, message?: string, ref?: string) =>
+      svc.createTag(repo, name, message, ref)
+  )
+  ipcMain.handle('git:deleteTag', (_e, repo: string, name: string) => svc.deleteTag(repo, name))
+  ipcMain.handle('git:pushTag', (_e, repo: string, name: string, remote?: string) => {
+    setPendingHost(hostFromRepo(repo))
+    return svc.pushTag(repo, name, remote)
+  })
   ipcMain.handle('git:remotes', (_e, repo: string) => svc.listRemotes(repo))
   ipcMain.handle('git:addRemote', (_e, repo: string, name: string, url: string) =>
     svc.addRemote(repo, name, url)
