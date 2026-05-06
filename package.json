@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "description": "Cross-platform git client with fully isolated git identity",
   "main": "out/main/index.js",
-  "author": "bvild",
+  "author": {
+    "name": "bvild",
+    "email": "officialhimanshumehra@gmail.com"
+  },
   "license": "MIT",
   "scripts": {
     "dev": "electron-vite dev",
