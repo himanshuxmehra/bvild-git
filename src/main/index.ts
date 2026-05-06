@@ -1,4 +1,5 @@
 import { app, BrowserWindow, shell } from 'electron'
+import { autoUpdater } from 'electron-updater'
 import { join } from 'node:path'
 import { registerIpc } from './ipc'
 import { startAskpassServer, stopAskpassServer } from './auth/askpass'
@@ -37,6 +38,12 @@ app.whenReady().then(async () => {
   await startAskpassServer()
   registerIpc()
   createWindow()
+
+  if (app.isPackaged) {
+    autoUpdater.checkForUpdatesAndNotify().catch((err) => {
+      console.error('autoUpdater failed:', err)
+    })
+  }
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()

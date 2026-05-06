@@ -27,3 +27,7 @@ linux:
     - AppImage
     - deb
   category: Development
+publish:
+  provider: github
+  owner: himanshuxmehra
+  repo: bvild-git
