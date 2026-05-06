@@ -14,15 +14,18 @@ asarUnpack:
   - '**/node_modules/better-sqlite3/**'
 mac:
   category: public.app-category.developer-tools
+  icon: build/icons/mac/icon.icns
   target:
     - target: dmg
       arch: [arm64, x64]
   hardenedRuntime: true
 win:
+  icon: build/icons/win/icon.ico
   target:
     - target: nsis
       arch: [x64]
 linux:
+  icon: build/icons/png
   target:
     - AppImage
     - deb
