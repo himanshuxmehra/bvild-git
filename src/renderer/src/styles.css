@@ -1,15 +1,46 @@
 /* ─────────────────────────────────────────────────────────────
-   bvild · industrial blueprint terminal
-   copper on graphite · hairlines · mono+serif
+   bvild · theme system
+   default: slate + cyan
    ───────────────────────────────────────────────────────────── */
 
+/* ── DEFAULT THEME: slate + cyan ─────────────────────────────── */
 :root {
-  --ink:        #0c0d10;
-  --panel:      #131519;
-  --panel-2:    #181b20;
-  --panel-3:    #1d2127;
-  --hairline:   #23262d;
-  --hairline-2: #2c3038;
+  --ink:        #111827;
+  --panel:      #18202f;
+  --panel-2:    #1e2839;
+  --panel-3:    #232f42;
+  --hairline:   #2a3548;
+  --hairline-2: #334055;
+  --bone:       #d6deeb;
+  --bone-soft:  #8b97a8;
+  --whisper:    #5a6a7a;
+  --whisper-2:  #3a4a5a;
+  --copper:     #56b6c2;
+  --copper-dim: #2d7480;
+  --patina:     #98c379;
+  --rust:       #e06c75;
+  --sky:        #c678dd;
+
+  --accent-rgb: 86, 182, 194;
+  --ink-rgb:    17, 24, 39;
+  --patina-rgb: 152, 195, 121;
+  --rust-rgb:   224, 108, 117;
+  --sky-rgb:    198, 120, 221;
+  --bone-rgb:   214, 222, 235;
+
+  --mono: 'JetBrains Mono', 'SF Mono', 'Menlo', 'Consolas', 'Courier New', monospace;
+  --serif: 'Iowan Old Style', 'Palatino Linotype', 'Palatino', 'Baskerville', 'Georgia', serif;
+  --display: var(--mono);
+}
+
+/* ── THEME: ink + copper (original) ─────────────────────────── */
+[data-theme="copper"] {
+  --ink:        #141518;
+  --panel:      #1c1d22;
+  --panel-2:    #22252b;
+  --panel-3:    #282c33;
+  --hairline:   #2f3239;
+  --hairline-2: #383c44;
   --bone:       #e6dfce;
   --bone-soft:  #b9b2a3;
   --whisper:    #6f6757;
@@ -20,9 +51,364 @@
   --rust:       #c25656;
   --sky:        #6b8db5;
 
-  --mono: 'JetBrains Mono', 'SF Mono', 'Menlo', 'Consolas', 'Courier New', monospace;
-  --serif: 'Iowan Old Style', 'Palatino Linotype', 'Palatino', 'Baskerville', 'Georgia', serif;
-  --display: var(--mono);
+  --accent-rgb: 217, 122, 58;
+  --ink-rgb:    20, 21, 24;
+  --patina-rgb: 127, 166, 142;
+  --rust-rgb:   194, 86, 86;
+  --sky-rgb:    107, 141, 181;
+  --bone-rgb:   230, 223, 206;
+}
+
+/* ── THEME: navy + amber ─────────────────────────────────────── */
+[data-theme="navy-amber"] {
+  --ink:        #141b24;
+  --panel:      #1d242e;
+  --panel-2:    #242d38;
+  --panel-3:    #2a3440;
+  --hairline:   #2d3440;
+  --hairline-2: #364050;
+  --bone:       #e6edf3;
+  --bone-soft:  #7d8590;
+  --whisper:    #586069;
+  --whisper-2:  #3a4249;
+  --copper:     #e3b341;
+  --copper-dim: #9a7620;
+  --patina:     #7ee787;
+  --rust:       #f85149;
+  --sky:        #58a6ff;
+
+  --accent-rgb: 227, 179, 65;
+  --ink-rgb:    20, 27, 36;
+  --patina-rgb: 126, 231, 135;
+  --rust-rgb:   248, 81, 73;
+  --sky-rgb:    88, 166, 255;
+  --bone-rgb:   230, 237, 243;
+}
+
+/* ── THEME: graphite + blue ──────────────────────────────────── */
+[data-theme="graphite-blue"] {
+  --ink:        #161616;
+  --panel:      #1e1e1e;
+  --panel-2:    #242424;
+  --panel-3:    #2a2a2a;
+  --hairline:   #303030;
+  --hairline-2: #383838;
+  --bone:       #ededed;
+  --bone-soft:  #8a8a8a;
+  --whisper:    #666666;
+  --whisper-2:  #444444;
+  --copper:     #4f8cff;
+  --copper-dim: #2a5ab0;
+  --patina:     #5fd9a6;
+  --rust:       #f0626b;
+  --sky:        #a78bfa;
+
+  --accent-rgb: 79, 140, 255;
+  --ink-rgb:    22, 22, 22;
+  --patina-rgb: 95, 217, 166;
+  --rust-rgb:   240, 98, 107;
+  --sky-rgb:    167, 139, 250;
+  --bone-rgb:   237, 237, 237;
+}
+
+/* ── THEME: plum + rose ──────────────────────────────────────── */
+[data-theme="plum-rose"] {
+  --ink:        #1e1626;
+  --panel:      #271e32;
+  --panel-2:    #2f253d;
+  --panel-3:    #352944;
+  --hairline:   #3a2d4a;
+  --hairline-2: #443858;
+  --bone:       #ece6f0;
+  --bone-soft:  #9b8fa8;
+  --whisper:    #7a6888;
+  --whisper-2:  #4e3f5a;
+  --copper:     #e26d8a;
+  --copper-dim: #9a3558;
+  --patina:     #82cfab;
+  --rust:       #e26d8a;
+  --sky:        #d4a857;
+
+  --accent-rgb: 226, 109, 138;
+  --ink-rgb:    30, 22, 38;
+  --patina-rgb: 130, 207, 171;
+  --rust-rgb:   226, 109, 138;
+  --sky-rgb:    212, 168, 87;
+  --bone-rgb:   236, 230, 240;
+}
+
+/* ── THEME: forest + phosphor green ─────────────────────────── */
+[data-theme="forest-green"] {
+  --ink:        #121e1a;
+  --panel:      #192620;
+  --panel-2:    #202e28;
+  --panel-3:    #263830;
+  --hairline:   #273830;
+  --hairline-2: #2e4038;
+  --bone:       #cfe6d8;
+  --bone-soft:  #6f8a7e;
+  --whisper:    #4e6a5e;
+  --whisper-2:  #2e4a3e;
+  --copper:     #7fdca4;
+  --copper-dim: #3a7a56;
+  --patina:     #7fdca4;
+  --rust:       #d97a3a;
+  --sky:        #6b8db5;
+
+  --accent-rgb: 127, 220, 164;
+  --ink-rgb:    18, 30, 26;
+  --patina-rgb: 127, 220, 164;
+  --rust-rgb:   217, 122, 58;
+  --sky-rgb:    107, 141, 181;
+  --bone-rgb:   207, 230, 216;
+}
+
+/* ── THEME: ink + burnt gold ─────────────────────────────────── */
+[data-theme="ink-gold"] {
+  --ink:        #1b1c21;
+  --panel:      #22242c;
+  --panel-2:    #292c34;
+  --panel-3:    #2f323c;
+  --hairline:   #32353e;
+  --hairline-2: #3c3f48;
+  --bone:       #e6dfce;
+  --bone-soft:  #b9b2a3;
+  --whisper:    #6f6757;
+  --whisper-2:  #4a463e;
+  --copper:     #c9a44d;
+  --copper-dim: #7a6020;
+  --patina:     #7fa68e;
+  --rust:       #c25656;
+  --sky:        #6b8db5;
+
+  --accent-rgb: 201, 164, 77;
+  --ink-rgb:    27, 28, 33;
+  --patina-rgb: 127, 166, 142;
+  --rust-rgb:   194, 86, 86;
+  --sky-rgb:    107, 141, 181;
+  --bone-rgb:   230, 223, 206;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT THEMES
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── LIGHT: slate + cyan ─────────────────────────────────────── */
+:root[data-mode="light"] {
+  --ink:        #f0f4f9;
+  --panel:      #e6ecf5;
+  --panel-2:    #dbe3ef;
+  --panel-3:    #cfd9e8;
+  --hairline:   #b8c8dc;
+  --hairline-2: #a6b8ce;
+  --bone:       #18273e;
+  --bone-soft:  #3e5270;
+  --whisper:    #6880a0;
+  --whisper-2:  #96afc8;
+  --copper:     #0a7e8c;
+  --copper-dim: #086878;
+  --patina:     #2a8c54;
+  --rust:       #c43040;
+  --sky:        #6a2aad;
+
+  --accent-rgb: 10, 126, 140;
+  --ink-rgb:    240, 244, 249;
+  --patina-rgb: 42, 140, 84;
+  --rust-rgb:   196, 48, 64;
+  --sky-rgb:    106, 42, 173;
+  --bone-rgb:   24, 39, 62;
+}
+
+/* ── LIGHT: ink + copper ─────────────────────────────────────── */
+[data-mode="light"][data-theme="copper"] {
+  --ink:        #f5f1ec;
+  --panel:      #ede7de;
+  --panel-2:    #e4dcd0;
+  --panel-3:    #dbd0c2;
+  --hairline:   #c8baa8;
+  --hairline-2: #b8a898;
+  --bone:       #1c180e;
+  --bone-soft:  #48402e;
+  --whisper:    #7a6e58;
+  --whisper-2:  #a8a090;
+  --copper:     #a85c1a;
+  --copper-dim: #804412;
+  --patina:     #3a6e50;
+  --rust:       #a03030;
+  --sky:        #3a5c88;
+
+  --accent-rgb: 168, 92, 26;
+  --ink-rgb:    245, 241, 236;
+  --patina-rgb: 58, 110, 80;
+  --rust-rgb:   160, 48, 48;
+  --sky-rgb:    58, 92, 136;
+  --bone-rgb:   28, 24, 14;
+}
+
+/* ── LIGHT: navy + amber ─────────────────────────────────────── */
+[data-mode="light"][data-theme="navy-amber"] {
+  --ink:        #eef3f8;
+  --panel:      #e2ecf5;
+  --panel-2:    #d6e4f0;
+  --panel-3:    #c8daec;
+  --hairline:   #aec8e0;
+  --hairline-2: #9cbad8;
+  --bone:       #0c1824;
+  --bone-soft:  #2a3e58;
+  --whisper:    #4e6882;
+  --whisper-2:  #80a0bc;
+  --copper:     #8a6008;
+  --copper-dim: #6a4800;
+  --patina:     #1a7a2e;
+  --rust:       #b83028;
+  --sky:        #0054b0;
+
+  --accent-rgb: 138, 96, 8;
+  --ink-rgb:    238, 243, 248;
+  --patina-rgb: 26, 122, 46;
+  --rust-rgb:   184, 48, 40;
+  --sky-rgb:    0, 84, 176;
+  --bone-rgb:   12, 24, 36;
+}
+
+/* ── LIGHT: graphite + blue ──────────────────────────────────── */
+[data-mode="light"][data-theme="graphite-blue"] {
+  --ink:        #f4f4f5;
+  --panel:      #e8e8ea;
+  --panel-2:    #dcdcdf;
+  --panel-3:    #d0d0d4;
+  --hairline:   #b8b8bc;
+  --hairline-2: #a8a8ae;
+  --bone:       #111114;
+  --bone-soft:  #303036;
+  --whisper:    #606068;
+  --whisper-2:  #9090a0;
+  --copper:     #1848c0;
+  --copper-dim: #0e38a0;
+  --patina:     #0a7a58;
+  --rust:       #c02028;
+  --sky:        #5c18c0;
+
+  --accent-rgb: 24, 72, 192;
+  --ink-rgb:    244, 244, 245;
+  --patina-rgb: 10, 122, 88;
+  --rust-rgb:   192, 32, 40;
+  --sky-rgb:    92, 24, 192;
+  --bone-rgb:   17, 17, 20;
+}
+
+/* ── LIGHT: plum + rose ──────────────────────────────────────── */
+[data-mode="light"][data-theme="plum-rose"] {
+  --ink:        #f5eff8;
+  --panel:      #ece2f2;
+  --panel-2:    #e2d4ec;
+  --panel-3:    #d8c6e4;
+  --hairline:   #c0a8d8;
+  --hairline-2: #b098cc;
+  --bone:       #1e0c2a;
+  --bone-soft:  #4a2860;
+  --whisper:    #7a5090;
+  --whisper-2:  #a886c0;
+  --copper:     #a81a5a;
+  --copper-dim: #80124a;
+  --patina:     #0a7862;
+  --rust:       #a81a5a;
+  --sky:        #8c5c10;
+
+  --accent-rgb: 168, 26, 90;
+  --ink-rgb:    245, 239, 248;
+  --patina-rgb: 10, 120, 98;
+  --rust-rgb:   168, 26, 90;
+  --sky-rgb:    140, 92, 16;
+  --bone-rgb:   30, 12, 42;
+}
+
+/* ── LIGHT: forest + phosphor green ─────────────────────────── */
+[data-mode="light"][data-theme="forest-green"] {
+  --ink:        #eef4f0;
+  --panel:      #e2ece6;
+  --panel-2:    #d4e4da;
+  --panel-3:    #c6dcce;
+  --hairline:   #a8ccb8;
+  --hairline-2: #98c0a8;
+  --bone:       #0a1e14;
+  --bone-soft:  #284838;
+  --whisper:    #4e7862;
+  --whisper-2:  #82a890;
+  --copper:     #147a50;
+  --copper-dim: #0c6040;
+  --patina:     #147a50;
+  --rust:       #a85020;
+  --sky:        #285888;
+
+  --accent-rgb: 20, 122, 80;
+  --ink-rgb:    238, 244, 240;
+  --patina-rgb: 20, 122, 80;
+  --rust-rgb:   168, 80, 32;
+  --sky-rgb:    40, 88, 136;
+  --bone-rgb:   10, 30, 20;
+}
+
+/* ── LIGHT: ink + gold ───────────────────────────────────────── */
+[data-mode="light"][data-theme="ink-gold"] {
+  --ink:        #f4f1ea;
+  --panel:      #ece7dc;
+  --panel-2:    #e4ddd0;
+  --panel-3:    #dbd4c2;
+  --hairline:   #c4baa8;
+  --hairline-2: #b4a896;
+  --bone:       #1a1810;
+  --bone-soft:  #484030;
+  --whisper:    #7a7060;
+  --whisper-2:  #a8a090;
+  --copper:     #8a6a10;
+  --copper-dim: #6a5000;
+  --patina:     #2e7858;
+  --rust:       #922424;
+  --sky:        #3e5880;
+
+  --accent-rgb: 138, 106, 16;
+  --ink-rgb:    244, 241, 234;
+  --patina-rgb: 46, 120, 88;
+  --rust-rgb:   146, 36, 36;
+  --sky-rgb:    62, 88, 128;
+  --bone-rgb:   26, 24, 16;
+}
+
+/* ── mode toggle (segmented radio switch) ────────────────────── */
+.mode-switch {
+  display: inline-flex;
+  border: 1px solid var(--hairline-2);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.mode-switch button {
+  width: 32px;
+  height: 28px;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--whisper);
+  background: transparent;
+  transition: color 120ms ease, background 120ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.mode-switch button + button {
+  border-left: 1px solid var(--hairline-2);
+}
+.mode-switch button.active {
+  color: var(--copper);
+  background: rgba(var(--accent-rgb), 0.1);
+}
+.mode-switch button:hover:not(.active) {
+  color: var(--bone-soft);
+  background: rgba(var(--accent-rgb), 0.04);
+  border-color: inherit;
 }
 
 * { box-sizing: border-box; }
@@ -49,7 +435,7 @@ body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    radial-gradient(rgba(230, 223, 206, 0.035) 1px, transparent 1px);
+    radial-gradient(rgba(var(--bone-rgb), 0.035) 1px, transparent 1px);
   background-size: 24px 24px;
   background-position: 0 0;
   z-index: 0;
@@ -60,8 +446,8 @@ body::after {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 30% 0%, rgba(217, 122, 58, 0.06), transparent 55%),
-    radial-gradient(ellipse at 100% 100%, rgba(107, 141, 181, 0.04), transparent 50%);
+    radial-gradient(ellipse at 30% 0%, rgba(var(--accent-rgb), 0.06), transparent 55%),
+    radial-gradient(ellipse at 100% 100%, rgba(var(--sky-rgb), 0.04), transparent 50%);
   z-index: 0;
 }
 #root { position: relative; z-index: 1; }
@@ -87,7 +473,7 @@ button:hover:not(:disabled) {
   border-color: var(--copper);
 }
 button:active:not(:disabled) {
-  background: rgba(217, 122, 58, 0.08);
+  background: rgba(var(--accent-rgb), 0.08);
 }
 button:disabled {
   color: var(--whisper-2);
@@ -146,12 +532,11 @@ h4 {
   display: flex;
   flex-direction: column;
   background:
-    linear-gradient(180deg, rgba(217, 122, 58, 0.02), transparent 200px),
+    linear-gradient(180deg, rgba(var(--accent-rgb), 0.02), transparent 200px),
     var(--panel);
   position: relative;
 }
 .sidebar::before {
-  /* a faint vertical rule like a ledger margin */
   content: '';
   position: absolute;
   top: 0; bottom: 0;
@@ -227,7 +612,7 @@ h4 {
   transform: translateY(-50%);
   width: 7px; height: 7px;
   background: var(--copper);
-  box-shadow: 0 0 12px rgba(217, 122, 58, 0.6);
+  box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.6);
 }
 .sidebar .repo.active::after {
   content: '';
@@ -409,7 +794,7 @@ h4 {
   font-family: var(--mono);
   font-size: 12px;
   color: var(--bone-soft);
-  border-bottom: 1px solid rgba(35, 38, 45, 0.5);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.5);
   transition: background 80ms ease, color 80ms ease;
 }
 .changes .file:hover {
@@ -509,7 +894,7 @@ h4 {
 }
 .diff .add {
   color: var(--patina);
-  background: rgba(127, 166, 142, 0.06);
+  background: rgba(var(--patina-rgb), 0.06);
   border-left-color: var(--patina);
 }
 .diff .add::before {
@@ -521,7 +906,7 @@ h4 {
 }
 .diff .del {
   color: var(--rust);
-  background: rgba(194, 86, 86, 0.06);
+  background: rgba(var(--rust-rgb), 0.06);
   border-left-color: var(--rust);
 }
 .diff .del::before {
@@ -533,7 +918,7 @@ h4 {
 }
 .diff .hunk {
   color: var(--sky);
-  background: rgba(107, 141, 181, 0.05);
+  background: rgba(var(--sky-rgb), 0.05);
   border-left-color: var(--sky);
   padding-top: 4px; padding-bottom: 4px;
   font-weight: 600;
@@ -573,7 +958,6 @@ h4 {
   transition: background 100ms ease;
 }
 .history .commit::before {
-  /* timeline dot */
   content: '';
   position: absolute;
   left: 19px; top: 19px;
@@ -583,7 +967,6 @@ h4 {
   border-radius: 50%;
 }
 .history .commit::after {
-  /* timeline rail */
   content: '';
   position: absolute;
   left: 22px; top: 0; bottom: 0;
@@ -611,7 +994,7 @@ h4 {
 .history .commit.selected::before {
   background: var(--copper);
   border-color: var(--copper);
-  box-shadow: 0 0 10px rgba(217, 122, 58, 0.5);
+  box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
 }
 .history .commit.selected > div:first-child {
   color: var(--bone);
@@ -623,14 +1006,10 @@ h4 {
   letter-spacing: 0.04em;
   margin-top: 5px;
 }
-.history .commit .sha::first-letter {
-  /* doesn't really apply but ok */
-}
 
 /* ─── branches ────────────────────────────────────────────── */
 
 .body[style*="column"] {
-  /* branches uses inline column flex */
   background: var(--panel);
 }
 .body[style*="column"] > div[style*="overflow"] > div {
@@ -652,7 +1031,7 @@ h4 {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse at center, rgba(12, 13, 16, 0.85) 0, rgba(12, 13, 16, 0.95) 100%);
+    radial-gradient(ellipse at center, rgba(var(--ink-rgb), 0.85) 0, rgba(var(--ink-rgb), 0.95) 100%);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   display: flex;
@@ -672,11 +1051,10 @@ h4 {
   box-shadow:
     0 0 0 1px var(--ink),
     0 30px 80px rgba(0, 0, 0, 0.6),
-    0 0 60px rgba(217, 122, 58, 0.05);
+    0 0 60px rgba(var(--accent-rgb), 0.05);
   animation: rise 240ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 .modal::before {
-  /* corner ticks — like blueprint marks */
   content: '';
   position: absolute;
   top: 0; left: 0;
@@ -721,7 +1099,7 @@ h4 {
   letter-spacing: 0.18em;
   color: var(--whisper);
 }
-.row input { flex: 1; }
+.row input, .row select { flex: 1; }
 
 .muted {
   color: var(--whisper);
@@ -741,13 +1119,6 @@ h4 {
 
 /* ─── toast ───────────────────────────────────────────────── */
 
-/* hijack the inline-styled toast */
-body > #root + div,
-.app + div {
-  /* the toast injected at top-level of App */
-}
-
-/* style the inline-styled toast positioned fixed at bottom */
 div[style*="position: fixed"][style*="bottom"][style*="50%"] {
   background: var(--panel-2) !important;
   border: 1px solid var(--copper) !important;
@@ -760,7 +1131,7 @@ div[style*="position: fixed"][style*="bottom"][style*="50%"] {
   box-shadow:
     0 0 0 4px var(--ink),
     0 12px 40px rgba(0, 0, 0, 0.6),
-    0 0 24px rgba(217, 122, 58, 0.2) !important;
+    0 0 24px rgba(var(--accent-rgb), 0.2) !important;
   animation: slide-up 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
@@ -813,7 +1184,6 @@ div[style*="position: fixed"][style*="bottom"][style*="50%"] {
   to   { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-/* tabs first-paint reveal */
 .toolbar { animation: slide-down 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
 .tabs { animation: slide-down 320ms 60ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
 .body { animation: fade-in 360ms 120ms ease both; }

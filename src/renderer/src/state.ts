@@ -1,6 +1,27 @@
 import { create } from 'zustand'
 import type { BranchInfo, Commit, FileStatus, Repo } from '../../shared/types'
 
+export type Theme =
+  | 'slate-cyan'
+  | 'copper'
+  | 'navy-amber'
+  | 'graphite-blue'
+  | 'plum-rose'
+  | 'forest-green'
+  | 'ink-gold'
+
+export type Mode = 'dark' | 'light'
+
+export const THEMES: { id: Theme; label: string }[] = [
+  { id: 'slate-cyan',    label: 'Slate + Cyan' },
+  { id: 'copper',        label: 'Ink + Copper' },
+  { id: 'navy-amber',    label: 'Navy + Amber' },
+  { id: 'graphite-blue', label: 'Graphite + Blue' },
+  { id: 'plum-rose',     label: 'Plum + Rose' },
+  { id: 'forest-green',  label: 'Forest + Green' },
+  { id: 'ink-gold',      label: 'Ink + Gold' },
+]
+
 interface AppState {
   repos: Repo[]
   selectedRepo: Repo | null
@@ -14,6 +35,8 @@ interface AppState {
   branches: BranchInfo[]
   busy: boolean
   toast: string | null
+  theme: Theme
+  mode: Mode
 
   refreshRepos(): Promise<void>
   selectRepo(r: Repo | null): Promise<void>
@@ -25,7 +48,12 @@ interface AppState {
   selectCommit(sha: string | null): Promise<void>
   setBusy(b: boolean): void
   setToast(t: string | null): void
+  setTheme(t: Theme): void
+  setMode(m: Mode): void
 }
+
+const storedTheme = (localStorage.getItem('bvild-theme') as Theme | null) ?? 'slate-cyan'
+const storedMode = (localStorage.getItem('bvild-mode') as Mode | null) ?? 'dark'
 
 export const useApp = create<AppState>((set, get) => ({
   repos: [],
@@ -40,6 +68,8 @@ export const useApp = create<AppState>((set, get) => ({
   branches: [],
   busy: false,
   toast: null,
+  theme: storedTheme,
+  mode: storedMode,
 
   async refreshRepos() {
     set({ repos: await window.api.repos.list() })
@@ -101,5 +131,13 @@ export const useApp = create<AppState>((set, get) => ({
   setToast(t) {
     set({ toast: t })
     if (t) setTimeout(() => set({ toast: null }), 3500)
+  },
+  setTheme(t) {
+    localStorage.setItem('bvild-theme', t)
+    set({ theme: t })
+  },
+  setMode(m) {
+    localStorage.setItem('bvild-mode', m)
+    set({ mode: m })
   }
 }))

@@ -24,6 +24,8 @@ export function App(): React.ReactElement {
   const refreshBranches = useApp((s) => s.refreshBranches)
   const setToast = useApp((s) => s.setToast)
   const setBusy = useApp((s) => s.setBusy)
+  const theme = useApp((s) => s.theme)
+  const mode = useApp((s) => s.mode)
 
   const [showSettings, setShowSettings] = useState(false)
   const [showClone, setShowClone] = useState(false)
@@ -33,6 +35,22 @@ export function App(): React.ReactElement {
   useEffect(() => {
     void refreshRepos()
   }, [refreshRepos])
+
+  useEffect(() => {
+    if (theme === 'slate-cyan') {
+      document.documentElement.removeAttribute('data-theme')
+    } else {
+      document.documentElement.setAttribute('data-theme', theme)
+    }
+  }, [theme])
+
+  useEffect(() => {
+    if (mode === 'dark') {
+      document.documentElement.removeAttribute('data-mode')
+    } else {
+      document.documentElement.setAttribute('data-mode', mode)
+    }
+  }, [mode])
 
   const current = branches.find((b) => b.current)
 

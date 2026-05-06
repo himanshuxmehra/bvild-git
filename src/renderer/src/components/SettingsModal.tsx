@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { useApp, THEMES } from '../state'
+
 
 export function SettingsModal({ onClose }: { onClose: () => void }): React.ReactElement {
   const [name, setName] = useState('')
@@ -7,6 +9,11 @@ export function SettingsModal({ onClose }: { onClose: () => void }): React.React
   const [ghCode, setGhCode] = useState<{ user_code: string; verification_uri: string } | null>(null)
   const [ghStatus, setGhStatus] = useState('')
   const [ghUser, setGhUser] = useState<string | null>(null)
+
+  const theme = useApp((s) => s.theme)
+  const setTheme = useApp((s) => s.setTheme)
+  const mode = useApp((s) => s.mode)
+  const setMode = useApp((s) => s.setMode)
 
   useEffect(() => {
     void (async () => {
@@ -54,6 +61,28 @@ export function SettingsModal({ onClose }: { onClose: () => void }): React.React
     <div className="modal-back" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <h3>Settings</h3>
+
+        <h4>Appearance</h4>
+        <div className="row">
+          <label>Theme</label>
+          <select value={theme} onChange={(e) => setTheme(e.target.value as typeof theme)}>
+            {THEMES.map((t) => (
+              <option key={t.id} value={t.id}>{t.label}</option>
+            ))}
+          </select>
+          <div className="mode-switch">
+            <button
+              className={mode === 'dark' ? 'active' : ''}
+              onClick={() => setMode('dark')}
+              title="Dark mode"
+            >☾</button>
+            <button
+              className={mode === 'light' ? 'active' : ''}
+              onClick={() => setMode('light')}
+              title="Light mode"
+            >☀</button>
+          </div>
+        </div>
 
         <h4>App git identity (isolated from system git)</h4>
         <div className="row">
