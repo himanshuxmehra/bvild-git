@@ -39,6 +39,7 @@ interface AppState {
   mode: Mode
 
   refreshRepos(): Promise<void>
+  removeRepo(id: number): Promise<void>
   selectRepo(r: Repo | null): Promise<void>
   setTab(t: AppState['tab']): void
   refreshStatus(): Promise<void>
@@ -73,6 +74,13 @@ export const useApp = create<AppState>((set, get) => ({
 
   async refreshRepos() {
     set({ repos: await window.api.repos.list() })
+  },
+  async removeRepo(id) {
+    await window.api.repos.remove(id)
+    if (get().selectedRepo?.id === id) {
+      await get().selectRepo(null)
+    }
+    await get().refreshRepos()
   },
   async selectRepo(r) {
     set({

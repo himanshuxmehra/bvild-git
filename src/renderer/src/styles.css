@@ -594,6 +594,30 @@ h4 {
 .sidebar .repo:hover {
   background: var(--panel-2);
 }
+.sidebar .repo .repo-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--whisper);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity 120ms ease, background 120ms ease, color 120ms ease;
+}
+.sidebar .repo:hover .repo-remove {
+  opacity: 1;
+}
+.sidebar .repo .repo-remove:hover {
+  background: var(--panel-3);
+  color: var(--copper);
+}
 .sidebar .repo:hover::before {
   content: '';
   position: absolute;

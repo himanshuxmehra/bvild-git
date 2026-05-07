@@ -17,6 +17,7 @@ export function App(): React.ReactElement {
   const toast = useApp((s) => s.toast)
 
   const refreshRepos = useApp((s) => s.refreshRepos)
+  const removeRepo = useApp((s) => s.removeRepo)
   const selectRepo = useApp((s) => s.selectRepo)
   const setTab = useApp((s) => s.setTab)
   const refreshStatus = useApp((s) => s.refreshStatus)
@@ -103,6 +104,19 @@ export function App(): React.ReactElement {
               onClick={() => selectRepo(r)}
               title={r.path}
             >
+              <button
+                className="repo-remove"
+                title="Remove from list"
+                aria-label="Remove from list"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  if (confirm(`Remove "${r.name}" from the list?\n\nThis only removes it from bvild. The folder on disk is not deleted.`)) {
+                    void removeRepo(r.id)
+                  }
+                }}
+              >
+                ×
+              </button>
               {r.name}
               <div style={{ fontSize: 11, color: '#888', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {r.path}
