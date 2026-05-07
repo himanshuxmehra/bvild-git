@@ -7,13 +7,12 @@ import { findCredentialByHost } from './keystore'
 
 let server: Server | null = null
 
-function helperScript(socket: string): string {
-  // Node script invoked by git as GIT_ASKPASS. Receives a single CLI arg
-  // (the prompt, e.g. "Username for 'https://github.com':") and must print
-  // the credential to stdout. We connect to our local socket to ask the
-  // main process for the answer.
-  return `#!/usr/bin/env node
-const net = require('net');
+const isWin = process.platform === 'win32'
+
+function jsHelperScript(socket: string): string {
+  // Run by Electron in ELECTRON_RUN_AS_NODE mode. Receives the prompt as
+  // its single CLI arg and must print the credential to stdout.
+  return `const net = require('net');
 const prompt = process.argv[2] || '';
 const socket = ${JSON.stringify(socket)};
 const c = net.createConnection(socket);
@@ -25,15 +24,42 @@ c.on('error', () => process.exit(1));
 `
 }
 
+function shellWrapperScript(execPath: string, jsPath: string): string {
+  // Posix shell wrapper. We can't put env vars in a shebang, and git's
+  // PATH may not contain a Node binary, so we exec the Electron binary
+  // with ELECTRON_RUN_AS_NODE=1 to run our JS helper.
+  const q = (s: string) => `'${s.replace(/'/g, `'\\''`)}'`
+  return `#!/bin/sh
+ELECTRON_RUN_AS_NODE=1 exec ${q(execPath)} ${q(jsPath)} "$@"
+`
+}
+
+function cmdWrapperScript(execPath: string, jsPath: string): string {
+  // Windows .cmd wrapper.
+  return `@echo off\r\nset ELECTRON_RUN_AS_NODE=1\r\n"${execPath}" "${jsPath}" %*\r\n`
+}
+
 export function helperPath(): string {
+  const userData = app.getPath('userData')
+  return join(userData, isWin ? 'askpass-helper.cmd' : 'askpass-helper.sh')
+}
+
+function jsHelperPath(): string {
   return join(app.getPath('userData'), 'askpass-helper.js')
 }
 
 function writeHelper(socket: string): void {
-  const path = helperPath()
-  writeFileSync(path, helperScript(socket), { mode: 0o700 })
+  const jsPath = jsHelperPath()
+  writeFileSync(jsPath, jsHelperScript(socket), { mode: 0o600 })
+
+  const wrapperPath = helperPath()
+  const execPath = process.execPath
+  const wrapper = isWin
+    ? cmdWrapperScript(execPath, jsPath)
+    : shellWrapperScript(execPath, jsPath)
+  writeFileSync(wrapperPath, wrapper, { mode: 0o700 })
   try {
-    chmodSync(path, 0o700)
+    chmodSync(wrapperPath, 0o700)
   } catch {
     /* windows */
   }
